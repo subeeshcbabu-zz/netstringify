@@ -2,9 +2,16 @@
   "name": "netstringify",
   "version": "1.0.0",
   "description": "A simple module to generate and parse netstring format",
-  "main": "index.js",
+  "main": "./compiled",
+  "engines": {
+    "node": ">= 4.0.0"
+  },
   "scripts": {
-    "test": "mocha "
+    "lint": "eslint index.js lib",
+    "test": "npm run build && mocha --compilers js:babel/register",
+    "build": "babel index.js -d compiled && npm run copy",
+    "prepublish": "npm run build",
+    "copy": "copyfiles package.json compiled/"
   },
   "repository": {
     "type": "git",
@@ -19,5 +26,19 @@
   "bugs": {
     "url": "https://github.com/subeeshcbabu/netstringify/issues"
   },
-  "homepage": "https://github.com/subeeshcbabu/netstringify#readme"
+  "homepage": "https://github.com/subeeshcbabu/netstringify#readme",
+  "devDependencies": {
+    "babel-cli": "^6.4.5",
+    "babel-plugin-transform-es2015-arrow-functions": "^6.4.0",
+    "babel-plugin-transform-es2015-destructuring": "^6.4.0",
+    "babel-plugin-transform-es2015-for-of": "^6.3.13",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.4.5",
+    "babel-plugin-transform-runtime": "^6.4.3",
+    "babel-register": "^6.6.0",
+    "copyfiles": "^0.2.1",
+    "mocha": "^2.3.4"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.6.1"
+  }
 }
