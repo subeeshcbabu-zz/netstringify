@@ -1,0 +1,23 @@
+{
+  "name": "netstringify",
+  "version": "1.0.0",
+  "description": "A simple module to generate and parse netstring format",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/subeeshcbabu/netstringify.git"
+  },
+  "keywords": [
+    "netstring",
+    "netstringify"
+  ],
+  "author": "subeesh chothendavida",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/subeeshcbabu/netstringify/issues"
+  },
+  "homepage": "https://github.com/subeeshcbabu/netstringify#readme"
+}
