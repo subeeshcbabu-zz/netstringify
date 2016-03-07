@@ -1,26 +1,37 @@
 'use strict';
+
+import path from 'path';
 /**
  *
  *
  **/
-const stringify = (text, { encoding = 'utf-8', response = 'string' } = {}) => {
+const NETSTRING_DELIMITER = ',';
+const NETSTRING_SEPARATOR = ':';
+
+const stringify = (input, { encoding = 'utf-8', response = 'string', delimiter = path.delimiter } = {}) => {
 
     let result = [];
 
-    if (!text) {
+    if (!input) {
         return;
     }
 
-    result.push(new Buffer(`${text.length}:`));
-    result.push(new Buffer(text));
-    result.push(new Buffer(','));
+    input.split(delimiter).forEach((text) => {
+        let netstring = [];
+        netstring.push(new Buffer(`${text.length}${NETSTRING_SEPARATOR}`, encoding));
+        netstring.push(new Buffer(text, encoding));
+        netstring.push(new Buffer(NETSTRING_DELIMITER, encoding));
+        netstring = Buffer.concat(netstring);
+        result.push((response === 'string') ? netstring.toString() : netstring);
+    });
 
-    result = Buffer.concat(result);
-
-    if (response === 'string') {
-        return result.toString();
-    }
     return result;
+};
+
+const parse = (netstring, { encoding = 'utf-8', response = 'string' } = {}) => {
+    if (!netstring) {
+        return;
+    }
 };
 
 export { stringify };
