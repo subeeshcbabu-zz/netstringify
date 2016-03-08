@@ -72,3 +72,4 @@ const parse = (netstring, { encoding = 'utf-8', response = 'string' } = {}) => {
 };
 
 export { netstringify, parse };
+export default netstringify

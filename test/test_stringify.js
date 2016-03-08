@@ -1,7 +1,8 @@
 'use strict';
 
 import assert from 'assert';
-import { netstringify, parse } from '../index'
+import { netstringify, parse } from '../index';
+import stringify from '../index';
 import path from 'path';
 
 describe('stringify', () => {
@@ -71,7 +72,7 @@ describe('stringify', () => {
     });
 
     it('should parse netstring array to buffer result', () => {
-        result = parse(netstringify(inputs), {
+        result = parse(stringify(inputs), {
             response : 'buffer'
         });
         assert.ok(result && result.length > 0, 'OK result');
